@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.board.mapper.BoardMapper">
+	<insert id="writeBoard" parameterType="board">
+		<selectKey keyProperty="id" resultType="long" order="BEFORE">
+			select
+			seq_board.nextval from dual
+		</selectKey>
+		insert into board (
+		id,
+		title,
+		content,
+		name,
+		password
+		) values (
+		#{id},
+		#{title},
+		#{content},
+		#{name},
+		#{password}
+		)
+	</insert>
+
+	<select id="findAllBoards" resultType="board">
+		select * from board
+	</select>
+
+	<select id="findById" resultType="board">
+		select * from board where id =
+		#{id}
+	</select>
+
+	<update id="updateBoard">
+		update board set
+		title = #{title},
+		content = #{content},
+		hit = #{hit}
+		where id = #{id}
+	</update>
+	<delete id="deleteById">
+		delete from board where id=#{id}
+	</delete>
+</mapper>

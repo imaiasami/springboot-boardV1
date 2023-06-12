@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/default.css">
+</head>
+<body>
+	<h1>[ 게시판 - 리스트 ]</h1>
+	<table>
+		<tr>
+			<th>No</th>
+			<th>제목</th>
+			<th>작성자</th>
+			<th>조회수</th>
+			<th>작성일</th>
+		</tr>
+		<tr th:each="board, boardStat : ${boards}">
+			<td th:text="${boardStat.count}"></td>
+			<td><a th:text="${board.title}" th:href="@{/read/{id}(id=${board.id})}"></a></td>
+			<td th:text="${board.name}"></td>
+			<td th:text="${board.hit}"></td>
+			<td th:text="${#temporals.format(board.input_date, 'yyyy-MM-dd HH:mm')}"></td>
+		</tr>
+	</table>
+</body>
+</html>

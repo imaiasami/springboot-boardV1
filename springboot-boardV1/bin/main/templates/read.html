@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel=stylesheet href="/default.css">
+</head>
+<body>
+	<h1>[ 게시판 - 글읽기 ]</h1>
+	<form action="'/delete/' + ${board.id}" method="post">
+		<table th:object=${board}>
+			<tr>
+				<th>제목</th>
+				<td th:text="*{title}"></td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td th:text="*{content}"></td>
+			</tr>
+			<tr>
+				<th>조회수</th>
+				<td th:text="*{hit}"></td>
+			</tr>
+			<tr>
+				<th>작성일</th>
+				<td th:text="*{input_date}"></td>
+			</tr>
+			<tr>
+				<th>작성자</th>
+				<td th:text="*{name}"></td>
+			</tr>
+			<tr>
+				<th>패스워드</th>
+				<td><input type="password" name="password"
+					placeholder="삭제 시 패스워드를 입력"></td>
+			</tr>
+			<tr>
+				<td calspan="2">
+				<input type="button" onclick="location.href='/list'" value="목록으로">
+				<input type="button" th:onclick="|location.href='/update/*{id}'|"value="수정하기">
+				<input type="submit" value="삭제하기"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
